@@ -46,11 +46,8 @@ const authService = {
   isTokenValid: (token) => {
     try {
       const decoded = jwt.verify(token, process.env.JWT_SECRET || 'default_jwt_secret');
-      
-      // BUG: This comparison is incorrect
-      // decoded.exp is in seconds (JWT standard) but Date.now() returns milliseconds
-      // This comparison will almost always return true even for expired tokens
-      return decoded.exp > Date.now();
+      // Fix: Compare decoded.exp (in seconds) with current time in seconds
+      return decoded.exp > Math.floor(Date.now() / 1000);
     } catch (error) {
       logger.error('Token validation error:', error);
       return false;
