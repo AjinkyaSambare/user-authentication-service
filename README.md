@@ -61,6 +61,9 @@ npm test
 - **Issue #42**: Authentication tokens don't expire after the specified timeout.
   - Tokens created with a 24-hour expiration are still valid after that period.
   - This is a security issue that needs to be addressed.
+  - The issue appears to be in the token validation logic.
+
+> Note: For demonstration purposes, the special issue #42 is being referenced above. In a real-world application, this issue would be tracked in the GitHub issues tab with the corresponding issue number.
 
 ## License
 
